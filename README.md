@@ -1,5 +1,7 @@
 # Los Santos → Los Angeles 🗺️
 
+Projekt w fazie wstępej będzie dalej rozwijany 
+
 Interaktywna mapa prawdziwego Los Angeles z zaznaczonymi miejscami, które zainspirowały mapę GTA V.
 
 Projekt fanowski, niezwiązany z Rockstar Games.

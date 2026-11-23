@@ -1,0 +1,14 @@
+services:
+  web:
+    build: .                  # zbuduj obraz z Dockerfile w tym katalogu
+    container_name: gta-la-map
+    ports:
+      - "8080:80"             # port na Twoim komputerze : port w kontenerze
+    environment:
+      # Wartość brana z pliku .env (jeśli go nie ma – pusta, wtedy działa darmowa mapa)
+      GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY:-}
+    volumes:
+      # Tryb deweloperski: zmiany w folderze site/ widać od razu po odświeżeniu strony,
+      # bez przebudowywania obrazu. Tylko do odczytu (:ro).
+      - ./site:/usr/share/nginx/html:ro
+    restart: unless-stopped

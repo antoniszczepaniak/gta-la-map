@@ -1,0 +1,20 @@
+# Szablon konfiguracji nginx.
+# Przy starcie kontenera obraz nginx podstawia tu zmienne środowiskowe
+# (np. ${GOOGLE_MAPS_API_KEY}) i zapisuje wynik w /etc/nginx/conf.d/default.conf.
+
+server {
+    listen 80;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # Plik konfiguracyjny dla przeglądarki, tworzony "w locie" z klucza API
+    location = /config.js {
+        default_type application/javascript;
+        add_header Cache-Control "no-store";
+        return 200 'window.APP_CONFIG = { googleMapsKey: "${GOOGLE_MAPS_API_KEY}" };';
+    }
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
